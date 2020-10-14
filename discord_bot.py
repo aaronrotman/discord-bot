@@ -1,7 +1,16 @@
 # Dependencies
 import discord
-from config import discord_token
 from functions import get_gas_data, get_eth_price
+# --------------------------------------------------
+#LOCAL DEPLOYMENT
+# from config import discord_token
+# --------------------------------------------------
+
+# --------------------------------------------------
+# HEROKU DEPLOYMENT
+discord_token = os.environ.get('discord_token')
+etherscan_key = os.environ.get('etherscan_key')
+# --------------------------------------------------
 
 # Instantiate Client to connect to discord
 client = discord.Client()
