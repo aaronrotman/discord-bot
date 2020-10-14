@@ -1,7 +1,7 @@
 # Dependencies
 import requests
 import json
-
+import os
 # --------------------------------------------------
 #LOCAL DEPLOYMENT
 # from config import discord_token

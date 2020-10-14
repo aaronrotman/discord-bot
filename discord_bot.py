@@ -1,6 +1,7 @@
 # Dependencies
 import discord
 from functions import get_gas_data, get_eth_price
+import os
 # --------------------------------------------------
 #LOCAL DEPLOYMENT
 # from config import discord_token
