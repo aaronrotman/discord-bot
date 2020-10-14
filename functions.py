@@ -1,7 +1,17 @@
 # Dependencies
-from config import etherscan_key
 import requests
 import json
+
+# --------------------------------------------------
+#LOCAL DEPLOYMENT
+# from config import discord_token
+# --------------------------------------------------
+
+# --------------------------------------------------
+# HEROKU DEPLOYMENT
+discord_token = os.environ.get('discord_token')
+etherscan_key = os.environ.get('etherscan_key')
+# --------------------------------------------------
 
 
 # Function to return current Ethereum gas data
