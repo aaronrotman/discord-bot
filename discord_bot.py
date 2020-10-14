@@ -11,6 +11,7 @@ client = discord.Client()
 async def on_ready():
     print(f"Logged in as {client.user}")
 
+
 # Event response for when the bot receives a message
 @client.event 
 async def on_message(message):
