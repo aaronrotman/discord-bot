@@ -2,16 +2,16 @@
 
 A discord bot that provides Ethereum blockchain data on demand.
 
-Tools used:
+## Tools used:
 * Python
 * APIs
 
-Current Commands:
+## Current Commands:
 * $gas
     * Retrieves current Ethereum gas prices and posts them to discord.
 * $eth
-    * Retrieves current Ethereum gas prices and posts them to discord.
+    * Retrieves the current price of Ethereum and posts it to discord.
 
-Example: 
+## Example: 
 
 !["Example bot command: $gas"](images/command_gas.PNG "Example bot command and response")
