@@ -38,14 +38,14 @@ async def on_message(message):
         # Make API call to get eth gas data
         gas_data = get_gas_data()
         # Send the results to the discord channel
-        await message.channel.send(f"Safe: {gas_data['safe_gas']}\nPropose: {gas_data['propose_gas']}")
+        await message.channel.send(f"Current gas prices:\nSafe: {gas_data['safe_gas']}\nPropose: {gas_data['propose_gas']}")
    
     # $eth | Respond with current Ethereum price
     elif message.content.lower().startswith("$eth"):
         # Make API call to get eth price data
         eth_data = get_eth_price()
         # Send the results to the discord channel
-        await message.channel.send(f"Ethereum: ${eth_data}")
+        await message.channel.send(f"Ethereum Price:\n${eth_data}")
 
 # Run the app
 client.run(discord_token)
