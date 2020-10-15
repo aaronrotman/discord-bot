@@ -1,6 +1,6 @@
 # Discord Bot
 
-A discord bot that provides Ethereum blockchain data.
+A discord bot that provides Ethereum blockchain data in response to user prompts.
 
 ## Tools used:
 * Python
