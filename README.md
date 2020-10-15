@@ -17,4 +17,4 @@ A discord bot that provides Ethereum blockchain data.
 !["Example bot command and response"](images/command_gas.PNG "Example bot command and response")
 
 ## Data Sources:
-Ethereum data provided by [Etherscan.io](https://etherscan.io/)
+Ethereum data provided by [Etherscan.io](https://etherscan.io/).
