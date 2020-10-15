@@ -1,6 +1,6 @@
 # Discord Bot
 
-A discord bot that provides Ethereum blockchain data in response to user prompts.
+A discord bot that provides Ethereum blockchain data in response to user prompts. Data includes the current price of Ethereum and the current gas prices for Ethereum.
 
 ## Tools used:
 * Python
