@@ -1,6 +1,6 @@
 # discord-bot
 
-A discord bot that provides Ethereum blockchain data on demand.
+A discord bot that provides Ethereum blockchain data.
 
 ## Tools used:
 * Python
@@ -12,6 +12,9 @@ A discord bot that provides Ethereum blockchain data on demand.
 * $eth
     * Retrieves the current price of Ethereum and posts it to discord.
 
-## Example: 
+## Example Usage: 
 
-!["Example bot command: $gas"](images/command_gas.PNG "Example bot command and response")
+!["Example bot command and response"](images/command_gas.PNG "Example bot command and response")
+
+## Data Sources:
+Ethereum data provided by [Etherscan.io](https://etherscan.io/)
