@@ -4,7 +4,8 @@ A discord bot that provides Ethereum blockchain data in response to user prompts
 
 ## Tools used:
 * Python
-* APIs
+* Etherscan API
+* Heroku
 
 ## Current Commands:
 * $gas
