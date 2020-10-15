@@ -1,4 +1,4 @@
-# discord-bot
+# Discord Bot
 
 A discord bot that provides Ethereum blockchain data.
 
