@@ -1,10 +1,11 @@
-# discord-bot
+# Discord Bot
 
-A discord bot that provides Ethereum blockchain data.
+A discord bot that provides Ethereum blockchain data in response to user prompts. Data includes the current price of Ethereum and the current gas prices for Ethereum.
 
 ## Tools used:
 * Python
-* APIs
+* Etherscan API
+* Heroku
 
 ## Current Commands:
 * $gas
@@ -17,4 +18,4 @@ A discord bot that provides Ethereum blockchain data.
 !["Example bot command and response"](images/command_gas.PNG "Example bot command and response")
 
 ## Data Sources:
-Ethereum data provided by [Etherscan.io](https://etherscan.io/)
+Ethereum data provided by [Etherscan.io](https://etherscan.io/).
