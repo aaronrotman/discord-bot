@@ -4,13 +4,12 @@ import json
 import os
 # --------------------------------------------------
 #LOCAL DEPLOYMENT
-# from config import discord_token
+from config import etherscan_key
 # --------------------------------------------------
 
 # --------------------------------------------------
 # HEROKU DEPLOYMENT
-discord_token = os.environ.get('discord_token')
-etherscan_key = os.environ.get('etherscan_key')
+# etherscan_key = os.environ.get('etherscan_key')
 # --------------------------------------------------
 
 
@@ -24,7 +23,9 @@ def get_gas_data():
         gas_dict = {
             "last_block": results['LastBlock'],
             "safe_gas": f"{results['SafeGasPrice']} gwei",
-            "propose_gas": f"{results['ProposeGasPrice']} gwei"
+            "propose_gas": f"{results['ProposeGasPrice']} gwei",
+            "fast_gas": f"{results['FastGasPrice']} gwei"
+
         }
         return gas_dict
 
@@ -34,7 +35,9 @@ def get_gas_data():
         gas_dict = {
             "last_block": "Data Unavailable",
             "safe_gas": "Data Unavailable",
-            "propose_gas": "Data Unavailable"
+            "propose_gas": "Data Unavailable",
+            "fast_gas": "Data Unavailable"
+
         }
         return gas_dict
 
