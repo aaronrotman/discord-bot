@@ -2,15 +2,9 @@
 import discord
 from functions import get_gas_data, get_eth_price
 import os
-# --------------------------------------------------
-#LOCAL DEPLOYMENT
-from config import discord_token
-# --------------------------------------------------
 
-# --------------------------------------------------
-# HEROKU DEPLOYMENT
-# discord_token = os.environ.get('discord_token')
-# --------------------------------------------------
+# Import Discord token from environment variables
+discord_token = os.environ.get('discord_token')
 
 # Instantiate Client to connect to discord
 client = discord.Client()

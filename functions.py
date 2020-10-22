@@ -2,16 +2,9 @@
 import requests
 import json
 import os
-# --------------------------------------------------
-#LOCAL DEPLOYMENT
-from config import etherscan_key
-# --------------------------------------------------
 
-# --------------------------------------------------
-# HEROKU DEPLOYMENT
-# etherscan_key = os.environ.get('etherscan_key')
-# --------------------------------------------------
-
+# Import Etherscan key from environment variables
+etherscan_key = os.environ.get('etherscan_key')
 
 # Function to return current Ethereum gas data
 def get_gas_data():
