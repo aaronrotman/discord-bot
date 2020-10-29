@@ -2,6 +2,9 @@
 import requests
 import json
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Import Etherscan key from environment variables
 etherscan_key = os.environ.get('etherscan_key')
