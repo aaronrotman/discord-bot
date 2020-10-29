@@ -17,9 +17,9 @@ client = discord.Client()
 async def on_ready():
     print(f"Logged in as {client.user}")
     # Store the channel ID for the bot-commands channel in the Bot Test Zone Discord server
-    channel = client.get_channel("765448936701427723")
+    channel = client.get_channel(765448936701427723)
     # Send a message to the channel announcing the bot is ready
-    await channel.send(f"Ether Bot is up and running!")
+    await channel.send(f"{client.user.name} is up and running!")
 
 # Event response for when the bot receives a message
 @client.event 
