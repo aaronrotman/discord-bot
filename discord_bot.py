@@ -2,6 +2,9 @@
 import discord
 from functions import get_gas_data, get_eth_price
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Import Discord token from environment variables
 discord_token = os.environ.get('discord_token')
@@ -13,6 +16,10 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print(f"Logged in as {client.user}")
+    # Store the channel ID for the bot-commands channel in the Bot Test Zone Discord server
+    channel = client.get_channel("765448936701427723")
+    # Send a message to the channel announcing the bot is ready
+    await channel.send(f"Ether Bot is up and running!")
 
 # Event response for when the bot receives a message
 @client.event 
