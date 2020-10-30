@@ -1,8 +1,10 @@
 # Dependencies
 import discord
-from functions import get_gas_data, get_eth_price
 import os
 from dotenv import load_dotenv
+import psycopg2
+
+from functions import get_gas_data, get_eth_price
 
 load_dotenv()
 
@@ -46,6 +48,39 @@ async def on_message(message):
         eth_data = get_eth_price()
         # Send the results to the discord channel
         await message.channel.send(f"Ethereum Price:\n${eth_data}")
+
+    # $chest | Respond with current total supply data for Gods Unchained Chests
+    elif message.content.lower().startswith("$chest"):
+        # Database url
+        database_url = os.environ.get("DATABASE_URL")
+        
+        # Connect to the database
+        conn = psycopg2.connect(database_url, sslmode='require')
+        cur = conn.cursor()
+       
+        # Query the database
+        cur.execute("""
+            SELECT *
+            FROM gu_chests
+            ORDER BY id;"""
+        )
+        
+        # Store the queried data     
+        data = cur.fetchall()
+       
+        # Send the results to the discord channel
+        await message.channel.send(
+            "GU Chest Supply:\n"
+            "-------------------------\n"
+            f"Genesis Rare: {data[0][3]}\n"
+            f"Genesis Legendary: {data[1][3]}\n"
+            f"TotG Rare: {data[2][3]}\n"
+            f"TotG Legendary: {data[3][3]}\n"
+        )
+
+        # Close connections with the database
+        cur.close()
+        conn.close()
 
 # Run the app
 client.run(discord_token)
