@@ -1,14 +1,19 @@
 # Dependencies
-import discord
 import os
+
+import discord
 from dotenv import load_dotenv
 import psycopg2
 
 from functions import get_gas_data, get_eth_price
 
+# Load environment variables
 load_dotenv()
 
-# Import Discord token from environment variables
+# Database url
+database_url = os.environ.get("DATABASE_URL")
+
+# Discord authentication token
 discord_token = os.environ.get('discord_token')
 
 # Instantiate Client to connect to discord
@@ -37,7 +42,7 @@ async def on_message(message):
     
     # $gas | Respond with current Ethereum gas price
     elif message.content.lower().startswith('$gas'):
-        # Make API call to get eth gas data
+        # Make API call to get Ethereum gas data
         gas_data = get_gas_data()
         # Send the results to the discord channel
         await message.channel.send(f"Current gas prices:\nSafe: {gas_data['safe_gas']}\nPropose: {gas_data['propose_gas']}\nFast: {gas_data['fast_gas']}")
@@ -51,36 +56,40 @@ async def on_message(message):
 
     # $chest | Respond with current total supply data for Gods Unchained Chests
     elif message.content.lower().startswith("$chest"):
-        # Database url
-        database_url = os.environ.get("DATABASE_URL")
+        try:
+            # Connect to the database
+            conn = psycopg2.connect(database_url, sslmode='require')
+            cur = conn.cursor()
         
-        # Connect to the database
-        conn = psycopg2.connect(database_url, sslmode='require')
-        cur = conn.cursor()
-       
-        # Query the database
-        cur.execute("""
-            SELECT *
-            FROM gu_chests
-            ORDER BY id;"""
-        )
+            # Query the database
+            cur.execute("""
+                SELECT *
+                FROM gu_chests
+                ORDER BY id;"""
+            )
+            
+            # Store the queried data     
+            data = cur.fetchall()
         
-        # Store the queried data     
-        data = cur.fetchall()
-       
-        # Send the results to the discord channel
-        await message.channel.send(
-            "GU Chest Supply:\n"
-            "-------------------------\n"
-            f"Genesis Rare: {data[0][3]}\n"
-            f"Genesis Legendary: {data[1][3]}\n"
-            f"TotG Rare: {data[2][3]}\n"
-            f"TotG Legendary: {data[3][3]}\n"
-        )
+            # Send the results to the discord channel
+            await message.channel.send(
+                "GU Chest Supply:\n"
+                "-------------------------\n"
+                f"Genesis Rare: {data[0][3]}\n"
+                f"Genesis Legendary: {data[1][3]}\n"
+                f"TotG Rare: {data[2][3]}\n"
+                f"TotG Legendary: {data[3][3]}\n"
+            )
 
-        # Close connections with the database
-        cur.close()
-        conn.close()
+            # Close connections with the database
+            cur.close()
+            conn.close()
+
+        except Exception as e:
+            print(e)
+            await message.channel.send("Database connection failed.")
+
+
 
 # Run the app
 client.run(discord_token)
