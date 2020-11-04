@@ -4,8 +4,10 @@ import os
 import discord
 from dotenv import load_dotenv
 import psycopg2
+import asyncio
 
 from functions import get_gas_data, get_eth_price
+from database_functions import update_db_chests
 
 # Load environment variables
 load_dotenv()
@@ -27,6 +29,13 @@ async def on_ready():
     channel = client.get_channel(765448936701427723)
     # Send a message to the channel announcing the bot is ready
     await channel.send(f"{client.user.name} is up and running!")
+    
+    # Update the database table 'gu_chests' every 10 minutes
+    while True:
+        # Update the database table 'gu_chests'
+        update_db_chests()
+        # Wait 10 minutes before the next update
+        await asyncio.sleep(1 * 60 * 10 )
 
 # Event response for when the bot receives a message
 @client.event 
