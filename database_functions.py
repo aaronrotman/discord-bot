@@ -71,6 +71,3 @@ def update_db_chests():
 
     return message
 
-# Call the function to update the gu chest supply data in the database
-update_db_chests()
-
