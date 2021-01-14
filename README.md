@@ -19,3 +19,15 @@ A discord bot that provides Ethereum blockchain data in response to user prompts
 
 ## Data Sources:
 Ethereum data provided by [Etherscan.io](https://etherscan.io/).
+
+## Dependencies to install:
+ * [Requests](https://requests.readthedocs.io/en/master/user/install/#install)
+   pip install requests
+ * [python-dotenv](https://pypi.org/project/python-dotenv/)
+   pip install python-dotenv
+ * [psycopg2-binary](https://pypi.org/project/psycopg2-binary/)
+   pip install psycopg2-binary
+ * [Discord.py](https://discordpy.readthedocs.io/en/latest/)
+   pip install discord.py
+ 
+ 
