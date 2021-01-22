@@ -1,13 +1,24 @@
 # Dependencies
+import os
 import requests
 import json
-import os
-from dotenv import load_dotenv
 
+
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
+
+# Load environment eariables
 load_dotenv()
 
 # Import Etherscan key from environment variables
 etherscan_key = os.environ.get('etherscan_key')
+
+# Database url
+database_url = os.environ.get("DATABASE_URL")
+
+# Database engine
+engine = create_engine(database_url)
+
 
 # Function to return current Ethereum gas data
 def get_gas_data():
@@ -27,7 +38,7 @@ def get_gas_data():
 
     # Handle api call failures
     except Exception as e:
-        print(e)
+        print(e, flush=True)
         gas_dict = {
             "last_block": "Data Unavailable",
             "safe_gas": "Data Unavailable",
@@ -36,6 +47,7 @@ def get_gas_data():
 
         }
         return gas_dict
+
 
 # Function to return the current Ethereum price data
 def get_eth_price():
@@ -57,10 +69,40 @@ def get_eth_price():
 
     # Handle api call failures
     except Exception as e:
-        print(e)
+        print(e, flush=True)
         eth_price = "Data Unavailable"
         # eth_dict = {
         #     "eth_usd": "Data Unavailable",
         #     "time": "Data Unavailable"
         # }
         return eth_price
+
+
+# Function to query the database.
+def query_db_chests():
+    # Dictionary to store the queried chest data
+    chest_dict = {}
+    # Query string to return set, rarity and total supply data from the 'gu_chests' table.
+    query_string = "SELECT set, rarity, total_supply FROM gu_chests;"
+    
+    # Connect to the database and execute query
+    try:
+        with engine.connect() as conn:
+            query_data = conn.execute(text(query_string))
+            data = query_data.fetchall()
+            for chest in data:
+                chest_dict[f"{chest[0]}_{chest[1]}"] = chest[2]
+            return chest_dict
+    
+    # Handle database connection failures
+    except Exception as e:
+        # Print error message
+        error_message = "Database query failed."
+        print(f"{error_message}\n{e}", flush=True)
+        # Assign
+        chest_dict['genesis_rare'] = 'Error'
+        chest_dict['genesis_legendary'] = 'Error'
+        chest_dict['totg_rare'] = 'Error'
+        chest_dict['totg_legendary'] = 'Error'
+        return chest_dict
+
