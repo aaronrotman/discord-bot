@@ -28,14 +28,14 @@ async def on_ready():
 
 
 # A simple greeting.
-@bot.command()
+@bot.command(help="A simple greeting")
 async def greet(ctx):
     print(f"Greeted user: {ctx.author.name}", flush=True)
     await ctx.send(f"Hello {ctx.author.name} ")
 
 
 # Post the current price of Ethereum to the channel that sent the command.
-@bot.command()
+@bot.command(help="Ethereum price (USD)")
 async def eth(ctx):
     print("Request received: Ethereum Price", flush=True)
     # Make API call to get eth price data.
@@ -45,7 +45,7 @@ async def eth(ctx):
 
 
 # Post the current gas price for the Ethereum blockchain to the channel that sent the command.
-@bot.command()
+@bot.command(help="Ethereum gas price (gwei)")
 async def gas(ctx):
     print("Request received: Ethereum gas price", flush=True)
     # Make API call to get Ethereum gas data.
@@ -55,7 +55,7 @@ async def gas(ctx):
 
 
 # Post the current supply of Gods Unchained chests to the channel that sent the command.
-@bot.command()
+@bot.command(help="GU chest supply data")
 async def chests(ctx):
     print('Request received: Chest Supply', flush=True)
     # Query the database for chest supply data.
